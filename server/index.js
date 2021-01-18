@@ -1,3 +1,6 @@
+require('@babel/register')();
+require('babel-polyfill');
+
 const Koa = require('koa')
 const { resolve } = require('path')
 const { connect, initSchemas, initAdmin } = require('../database/init.js')
