@@ -3,7 +3,7 @@ import { defineConfig } from 'umi';
 const outputPath = 'dist/';
 
 const env = process.env.NODE_ENV;
-const path = env === 'development' ? 'http://127.0.0.1:8000/' : outputPath;
+const path = env === 'development' ? 'http://127.0.0.1:8000/' : '//cdn.yonyoucloud.com/cp-music-center/';
 
 export default defineConfig({
   ssr: {
