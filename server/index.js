@@ -19,6 +19,8 @@ const userMiddlewares = (app) => {
   )(MIDDLEWARES)
 }
 
+const app = new Koa()
+
 ;(async () => {
   await connect()
   await initSchemas()
@@ -27,9 +29,9 @@ const userMiddlewares = (app) => {
   await initAdmin()
   // require('./tasks/movie')
   // require('./tasks/api')
-  const app = new Koa()
   await userMiddlewares(app)
   app.listen(7001)
-  module.exports = app.callback()
   console.log('listen 7001')
 })();
+
+module.exports = app.callback()
