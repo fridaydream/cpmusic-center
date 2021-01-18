@@ -30,5 +30,6 @@ const userMiddlewares = (app) => {
   const app = new Koa()
   await userMiddlewares(app)
   app.listen(7001)
+  module.exports = app.callback()
   console.log('listen 7001')
 })();
