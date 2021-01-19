@@ -23,6 +23,4 @@ const userMiddlewares = (app) => {
 const app = new Koa()
 
 userMiddlewares(app)
-setTimeout(() => {
-  module.exports = app.callback()
-}, 10000)
+module.exports = app.callback()
