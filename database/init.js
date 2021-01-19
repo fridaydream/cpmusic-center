@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const isDev = process.env.NODE_ENV === 'development'
-let db = 'mongodb+srv://cpadmin:cp131625@cluster0.n6ldn.mongodb.net/music?retryWrites=true&w=majority'
+let db = 'mongodb+srv://cpadmin:cp131625@cluster0.n6ldn.mongodb.net/music?retryWrites=true'
 // if (isDev) {
 //   db = 'mongodb://127.0.0.1:27017/music?authSource=admin'
 // }
@@ -34,13 +34,20 @@ exports.connect = () => {
     // if (process.env.NODE_ENV !== 'production') {
     //   mongoose.set('debug', true)
     // }
-    mongoose.connect(db, { useNewUrlParser: true })
+    console.log('start');
+    mongoose.connect(db, { bufferCommands: false, // Disable mongoose buffering
+      bufferMaxEntries: 0, // and MongoDB driver buffering
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true, }, (err) => {
+        console.log('===', err)
+      })
 
     mongoose.connection.on('disconnected', () => {
       console.log('disconnect')
       maxConnectTimes++;
       if (maxConnectTimes < 5) {
-        mongoose.connect(db, { useNewUrlParser: true })
+        mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
       } else {
         throw new Error('数据库挂了，快去fix')
       }
