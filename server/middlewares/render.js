@@ -1,5 +1,7 @@
 const { join, extname } = require('path');
 
+const { connect } = require('../../database/init')
+
 const { parseCookie, parseNavLang } = require('../lib/serverHelper');
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -8,6 +10,8 @@ let render;
 
 const addRender = app => {
   app.use(async (ctx, next) => {
+    await connect();
+
     /**
      *  扩展global对象
      *
