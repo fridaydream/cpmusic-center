@@ -39,9 +39,7 @@ exports.connect = () => {
       bufferMaxEntries: 0, // and MongoDB driver buffering
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useCreateIndex: true, }, (err) => {
-        console.log('===', err)
-      })
+      useCreateIndex: true, })
 
     mongoose.connection.on('disconnected', () => {
       console.log('disconnect')
@@ -73,7 +71,8 @@ exports.connect = () => {
       //   .then(() => {
       //     console.log('saved')
       //   })
-      resolve()
+      initSchemas()
+      resolve(true)
     })
   })
 }
