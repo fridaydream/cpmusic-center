@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const isDev = process.env.NODE_ENV === 'development'
 let db = 'mongodb+srv://cpadmin:cp131625@cluster0.n6ldn.mongodb.net/music?retryWrites=true'
 // if (isDev) {
-//   db = 'mongodb://127.0.0.1:27017/music?authSource=admin'
+  // db = 'mongodb://127.0.0.1:27017/music?authSource=admin'
 // }
 const { resolve } = require('path')
 const glob = require('glob')
