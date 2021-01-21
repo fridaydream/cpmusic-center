@@ -11,7 +11,7 @@ const fetch = (url, option = {}) => {
   //   isBrowser() ? '' : `${global.host || 'http://localhost:7001'}`
   // }${url}${paramsStr}`;
   const reqUrl = `${
-    isBrowser() ? '' : `${global.host || 'https://cpmusic-center.vercel.app'}`
+    isBrowser() ? '' : `${global.host || 'http:localhost:7001'}`
   }${url}${paramsStr}`;
   console.log('reqUrl', reqUrl);
   return request(reqUrl, restOpts).catch(e => {
