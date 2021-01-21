@@ -8,10 +8,8 @@ const isDev = process.env.NODE_ENV === 'development';
 
 let render;
 
-const addRender = app => {
+const addRender = async app => {
   app.use(async (ctx, next) => {
-    await connect();
-
     /**
      *  扩展global对象
      *

@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build": "cross-env umi build",
-    "start": "node server.js",
+    "start": "node server/index.js",
     "dev": "cross-env UMI_UI=none NODE_ENV=development concurrently \"umi dev\" \"nodemon server.js\"",
     "client:dev": "cross-env UMI_UI=none NODE_ENV=development umi dev",
     "server:dev": "cross-env UMI_UI=none NODE_ENV=development nodemon server.js",

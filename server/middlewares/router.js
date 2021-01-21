@@ -6,4 +6,3 @@ exports.router = async app => {
   const router = new Route(app, apiPath)
   router.init()
 }
-

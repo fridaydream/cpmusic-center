@@ -1,5 +1,5 @@
-// require('@babel/register')();
-// require('babel-polyfill');
+require('@babel/register')();
+require('babel-polyfill');
 // require('./server/index');
 // const { connect, initSchemas, initAdmin } = require('./database/init.js')
 

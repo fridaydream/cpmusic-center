@@ -1,13 +1,13 @@
+require('@babel/register')();
+require('babel-polyfill');
 const Koa = require('koa')
 const { resolve } = require('path')
 
 const R = require('ramda')
 const MIDDLEWARES = [ 'common', 'router', 'render' ]
 const { connect, initSchemas, initAdmin } = require('../database/init.js')
-// const { addRender } = './middlewares/render'
 
 const userMiddlewares = (app) => {
-
   R.map(
     R.compose(
       R.forEachObjIndexed(
@@ -21,17 +21,18 @@ const userMiddlewares = (app) => {
 
 const app = new Koa()
 
-app.listen(7001)
 
-// ;(async () => {
-  // connect()
-  // initSchemas()
+;(async () => {
+  await connect()
+  await initSchemas()
   // require('./tasks/trailer')
   // require('./tasks/oss')
-  // await initAdmin()
+  await initAdmin()
   // require('./tasks/movie')
   // require('./tasks/api')
   userMiddlewares(app)
-// })();
+})();
+
+app.listen(7001)
 
 module.exports = app;

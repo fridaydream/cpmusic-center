@@ -71,7 +71,6 @@ exports.connect = () => {
       //   .then(() => {
       //     console.log('saved')
       //   })
-      initSchemas()
       resolve(true)
     })
   })
