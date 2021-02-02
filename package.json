@@ -1,0 +1,57 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "umi dev",
+    "build": "umi build",
+    "client:dev": "cross-env UMI_UI=none NODE_ENV=development umi dev",
+    "server:dev": "cross-env UMI_UI=none NODE_ENV=development nodemon --watch 'server/**/*.js' --exec 'ts-node' server/index.js",
+    "postinstall": "umi generate tmp",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "dependencies": {
+    "@ant-design/pro-form": "^1.15.2",
+    "@ant-design/pro-layout": "^6.5.0",
+    "@umijs/preset-react": "1.x",
+    "bcrypt": "^5.0.0",
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-compress": "^5.0.1",
+    "koa-cookie": "^1.0.0",
+    "koa-mount": "^4.0.0",
+    "koa-router": "^10.0.0",
+    "koa-session": "^6.1.0",
+    "koa-static": "^5.0.0",
+    "mongoose": "^5.11.13",
+    "ramda": "^0.27.1",
+    "ts-node": "^9.1.1",
+    "umi": "^3.3.7"
+  },
+  "devDependencies": {
+    "@babel/register": "^7.12.10",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "@umijs/test": "^3.3.7",
+    "babel-polyfill": "^6.26.0",
+    "cross-env": "^7.0.3",
+    "lint-staged": "^10.0.7",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.0",
+    "react": "17.x",
+    "react-dom": "17.x",
+    "typescript": "^4.1.2",
+    "yorkie": "^2.0.0"
+  }
+}
