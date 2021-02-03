@@ -4,28 +4,11 @@ const Schema = mongoose.Schema
 
 const ObjectId = Schema.Types.ObjectId
 
-const musicSchema = new Schema({
-  user: {
+const categorySchema = new Schema({
+  music: [{
     type: ObjectId,
-    ref: 'User'
-  },
-  category: [{
-    type: ObjectId,
-    ref: 'Category'
+    ref: 'Music'
   }],
-  url: {
-    unique: true,
-    required: true,
-    type: String
-  },
-  cover: {
-    required: true,
-    type: String
-  },
-  author: {
-    required: true,
-    type: String
-  },
   name: {
     required: true,
     unique: true,
@@ -43,7 +26,7 @@ const musicSchema = new Schema({
   }
 })
 
-musicSchema.pre('save', function(next) {
+categorySchema.pre('save', function(next) {
   if (this.isNew) {
     this.meta.createAt = this.meta.updatedAt = Date.now()
   } else {
@@ -52,4 +35,4 @@ musicSchema.pre('save', function(next) {
   next()
 })
 
-mongoose.model('Music', musicSchema)
+mongoose.model('Category', categorySchema)

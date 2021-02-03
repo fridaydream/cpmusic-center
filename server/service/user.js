@@ -15,8 +15,7 @@ exports.checkPassword = async (email, password) => {
 }
 
 exports.getAllUser = async () => {
-  const result = await User.find({}).populate('music').exec()
-  console.log(result);
+  const result = await User.find({}).populate('music').populate('category').exec()
   return result
 }
 

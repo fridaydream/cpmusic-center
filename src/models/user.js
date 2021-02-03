@@ -26,7 +26,6 @@ export default {
     },
     *queryCurrentUser(_, { call, put }) {
       const data = yield call(queryCurrentUser);
-      console.log('data===', data);
       if (data && data.success) {
         yield put({
           type: 'setState',
@@ -47,7 +46,6 @@ export default {
 
   reducers: {
     setState(state, { payload }) {
-      console.log('payload===', payload);
       return {
         ...state,
         ...payload,

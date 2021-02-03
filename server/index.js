@@ -8,7 +8,7 @@ const { resolve } = require('path')
 const R = require('ramda')
 const MIDDLEWARES = [ 'common',  'router', 'render' ,]
 // const MIDDLEWARES = [ 'common', 'render' ]
-const { connect, initSchemas, initAdmin } = require('../database/init.js')
+const { connect, initSchemas, initAdmin, initCategory } = require('../database/init.js')
 
 const userMiddlewares = (app) => {
   R.map(
@@ -29,7 +29,8 @@ async function init () {
   // initSchemas()
   // require('./tasks/trailer')
   // require('./tasks/oss')
-  // await initAdmin()
+  await initAdmin()
+  initCategory()
   // require('./tasks/movie')
   // require('./tasks/api')
   // userMiddlewares(app)

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Modal, Form, Input } from 'antd';
+import { Modal, Form, Input, Select } from 'antd';
 
-const UpdateForm = ({ visible, onCreate, onCancel }) => {
+const { Option } = Select;
+
+const UpdateForm = ({ visible, onCreate, onCancel, categoryList }) => {
   const [form] = Form.useForm();
   return (
     <Modal
@@ -41,6 +43,24 @@ const UpdateForm = ({ visible, onCreate, onCancel }) => {
           ]}
         >
           <Input />
+        </Form.Item>
+        <Form.Item
+          name="category"
+          label="类别"
+          rules={[
+            {
+              required: true,
+              message: '必选',
+            },
+          ]}
+        >
+          <Select>
+            {
+              categoryList.map(li => (
+                <Option value={li._id} key={li._id}>{li.name}</Option>
+              ))
+            }
+          </Select>
         </Form.Item>
         <Form.Item
           name="author"

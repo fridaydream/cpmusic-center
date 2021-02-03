@@ -29,6 +29,33 @@ exports.initAdmin = async () => {
   }
 }
 
+exports.initCategory = async () => {
+  const Category = mongoose.model('Category')
+  let category = await Category.find({})
+  console.log('category++', category);
+  if (category && category.length === 0) {
+    await Category.insertMany([{
+      name: 'Pop（流行）'
+    }, {
+      name: 'Rock（摇滚）'
+    }, {
+      name: 'Folk（民谣）'
+    }, {
+      name: 'Electronic（电子）'
+    }, {
+      name: 'Jazz（爵士）'
+    }, {
+      name: 'Absolute Music（纯音乐）'
+    }, {
+      name: 'Metal（金属）'
+    },  {
+      name: 'Rap（说唱）'
+    }, {
+      name: 'Classical（古典）'
+    }])
+  }
+}
+
 let cachedDb = {};
 
 console.log('restart');

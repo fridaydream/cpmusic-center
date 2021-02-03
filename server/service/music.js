@@ -1,38 +1,43 @@
 const mongoose = require('mongoose')
 const Music = mongoose.model('Music')
 
-export const findAndRemove = async (id) => {
+exports.findAndRemove = async (id) => {
   const music = await Music.findOne({_id: id})
   if (music) {
     await music.remove()
   }
 }
 
-export const getAllMusics = async () => {
+exports.getAllMusics = async () => {
   const query = {}
-  // 对最新的进行排序
-  const musics = await Music.find(query).sort({'meta.updatedAt': -1})
+  // // 对最新的进行排序
+  // exports.getAllUser = async () => {
+  //   const result = await User.find({}).populate('music').populate('category').exec()
+  //   return result
+  // }
+  const musics = await Music.find(query).populate('user').populate('category').exec()
   return musics
 }
 
-export const getMovieDetail = async (id) => {
+exports.getMovieDetail = async (id) => {
   const music = await Music.findOne({_id: id})
   return music
 }
 
-export const createMusic = async ({ url, cover, author, name, user }) => {
+exports.createMusic = async ({ url, cover, author, name, category, user }) => {
   const music = new Music({
     url,
     cover,
     author,
     name,
-    user
+    user,
+    category
   })
   const result = await music.save()
   return result
 }
 
-export const updateMusicById = async (data) => {
+exports.updateMusicById = async (data) => {
   const music = await Music.findOneAndUpdate(
     {_id: data.id},
     {

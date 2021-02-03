@@ -13,23 +13,29 @@ const {
   updateMusicById
 } = require('../service/music')
 
+const {
+  updateCategoryMusic
+} = require('../service/category')
+
 @controller('/api/admin')
 class adminController {
   @post('/music/create')
   @auth
   async createMusic(ctx, next) {
     const { user } = ctx.session
-    const { url, cover, author, name } = ctx.request.body
-    const result = await createMusic({ url, cover, author, name, user: user._id });
+    const { url, cover, author, name, category } = ctx.request.body
+    const result = await createMusic({ url, cover, author, name, category, user: user._id });
     const result2 = await updateUserMusic(user._id, result._id);
-    if (result && result2) {
+    const result3 = await updateCategoryMusic(category, result._id);
+    if (result && result2 && result3) {
       ctx.body = {
         success: true
       }
       return;
     }
     return ctx.body = {
-      success: true
+      success: false,
+      err: '新增失败'
     }
   }
 

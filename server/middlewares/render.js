@@ -35,7 +35,6 @@ const addRender = async app => {
       const { html, error } = await render({
         path: ctx.request.url,
       });
-      console.log('html', html);
       if (error) {
         console.log('----------------服务端报错-------------------', error);
         ctx.throw(500, error);

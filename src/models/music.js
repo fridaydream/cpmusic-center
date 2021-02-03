@@ -1,8 +1,9 @@
-import { query, create, del } from '@/pages/Music/service';
+import { query, create, del, getCategorys } from '@/pages/Music/service';
 
 const initState = () => ({
   title: '',
   list: [],
+  categoryList: []
 });
 
 export default {
@@ -16,6 +17,15 @@ export default {
         type: 'setState',
         payload: {
           list: data.data
+        },
+      });
+    },
+    *queryCategorys(_, { call, put }) {
+      const data = yield call(getCategorys);
+      yield put({
+        type: 'setState',
+        payload: {
+          categoryList: data.data
         },
       });
     },
@@ -37,7 +47,6 @@ export default {
 
   reducers: {
     setState(state, { payload }) {
-      console.log('payload===', payload);
       return {
         ...state,
         ...payload,

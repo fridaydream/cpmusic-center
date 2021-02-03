@@ -8,7 +8,7 @@ import styles from './index.less';
 const TableList = (props) => {
   const [visible, setVisible] = useState(false);
 
-  const { list, dispatch, currentUser } = props;
+  const { list, dispatch, currentUser, categoryList } = props;
   const reloadData = async () => {
     dispatch({
       type: 'music/query',
@@ -131,6 +131,7 @@ const TableList = (props) => {
       <UpdateForm
         visible={visible}
         onCreate={onCreate}
+        categoryList={categoryList}
         onCancel={() => {
           setVisible(false);
         }}
@@ -141,8 +142,8 @@ const TableList = (props) => {
 
 TableList.getInitialProps = async (ctx) => {
   const { store, isServer } = ctx;
-  console.log('ctx.session+++');
   await store.dispatch({ type: 'music/query'});
+  await store.dispatch({ type: 'music/queryCategorys'});
   const { music, user } = store.getState();
   return {
     music,
@@ -150,4 +151,4 @@ TableList.getInitialProps = async (ctx) => {
   }
 };
 
-export default connect(({ music, user }) => ({ list: music.list, currentUser: user.currentUser }))(TableList);
+export default connect(({ music, user }) => ({ list: music.list, currentUser: user.currentUser, categoryList: music.categoryList }))(TableList);

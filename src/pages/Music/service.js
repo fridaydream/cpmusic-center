@@ -30,3 +30,10 @@ export async function update(params) {
     },
   });
 }
+
+// 获取类别
+export async function getCategorys() {
+  return request('/api/category/list', {
+    method: 'GET',
+  });
+}

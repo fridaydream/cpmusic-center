@@ -1,12 +1,13 @@
 const mongoose = require('mongoose')
-import { controller, get, post, put } from '../lib/decorator'
+const { controller, get } = require('../lib/decorator')
+
 const {
   getAllMusics,
   getMusicDetail,
 } = require('../service/music')
 
 @controller('/api/music')
-export class movieController {
+class musicController {
   @get('/list')
   async getMusics (ctx, next) {
     const musics = await getAllMusics()
@@ -29,3 +30,7 @@ export class movieController {
   }
 }
 
+
+module.exports = {
+  musicController
+}
